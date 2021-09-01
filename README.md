@@ -5,6 +5,36 @@
     Python Engineer Test
 </p>
 <p>
+    Project
+</p>
+<p>
+    /Flask_isa
+</p>
+<p>
+        /database/ -----------------------------Directory for creating and seed
+    SQLite db using seed.py
+</p>
+<p>
+    /flaskisa/--------------------------------FLASK App wrap (package) to use
+    manage.py
+</p>
+<p>
+    /seed/------------------------------------directory of seed.py and
+    seedpost.py
+</p>
+<p>
+    App.py------------------------------------None wrap Flask application
+</p>
+<p>
+    dbmanage.py---------------------------Flask-migrate script
+</p>
+<p>
+    manage.py------------------------------Flask-script for Flask cmd
+</p>
+<p>
+    requirements.txt----------------------Python installs.
+</p>
+<p>
     The solution is based on Stages :
 </p>
 <p>
