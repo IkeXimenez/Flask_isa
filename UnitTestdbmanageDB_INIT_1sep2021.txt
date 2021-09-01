@@ -1,0 +1,10 @@
+(venv) PS D:\Flask_isa> d:/Flask_isa/venv/Scripts/python.exe d:/Flask_isa/dbmanage.py db init
+D:\Flask_isa\venv\lib\site-packages\flask_sqlalchemy\__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+Creating directory D:\Flask_isa\migrations ...  done
+Creating directory D:\Flask_isa\migrations\versions ...  done
+Generating D:\Flask_isa\migrations\alembic.ini ...  done
+Generating D:\Flask_isa\migrations\env.py ...  done
+Generating D:\Flask_isa\migrations\README ...  done
+Generating D:\Flask_isa\migrations\script.py.mako ...  done
+Please edit configuration/connection/logging settings in 'D:\\Flask_isa\\migrations\\alembic.ini' before proceeding.
