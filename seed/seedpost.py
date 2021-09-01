@@ -1,11 +1,16 @@
 '''
-Test project by Isaac Jimenez 28 08 2021
-Stage 1 test seed script for database data loading 
+Test project by Isaac Jimenez 1 09 2021
+Stage 1 test seed script for POSTGRESQL database data loading 
+
+Copy from seed.py extend to Seed PostgreSQL database using config.py to read database.ini
+param files for connection
 
 '''
 import requests
 import json
-import sqlite3
+# import sqlite3
+import psycopg2
+from config import config
 
 # Command line arguments
 import getopt, sys
@@ -45,7 +50,7 @@ except getopt.error as err:
     print (str(err)," USAGE seed.py -t <Number of records> or seed.py --Total <Number of records>")
     sys.exit()
 
-print("Number of records to seed Database",num_records) 
+print("Number of records to seed PostgreSQL Database",num_records) 
 
 # Calling the github Users API based in the number of records
 # I configured the api call for 100 records per call
@@ -57,28 +62,22 @@ if num_records % 100 > 0 : Calls_to_api = int(Calls_to_api) + 1
 
 print("Calling the API ",Calls_to_api," Times")
 
-# DataBase Management github_users.db SQLite 
-conn = sqlite3.connect('./database/github_users.db')
+# DataBase Management for postgreSQL
+
+conn =None
+
+params = config()
+
+print('Connecting to the PostgreSQL database...')
+conn = psycopg2.connect(**params)
+
+#conn = sqlite3.connect('./database/github_users.db')
 c = conn.cursor()
 print("Opened database successfully")
 
-c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='GITHUB_USERS' ''')
+# in PostGreSQL you must have created the GITHUB_USERS table first
 
-if c.fetchone()[0]==1 :
-    c.execute(''' DELETE FROM GITHUB_USERS ''')
-    print("GITHUB_USERS table deleted")
-else :
-    conn.execute('''CREATE TABLE GITHUB_USERS
-            (ID            INT PRIMARY KEY     NOT NULL,
-            ID_USER       INT   ,
-            USER_NAME      CHAR(50),
-            AVATAR         TEXT,
-            USER_TYPE      CHAR(50),
-            URL            TEXT           );''')
-    print("GITHUB_USERS table Created")     
-
-
-
+c.execute(''' DELETE FROM public."GITHUB_USERS" ''')
 
 # Try connect to web service
 
@@ -103,11 +102,11 @@ for loop_num in range(int(Calls_to_api)):
     for i in range(len(data)) :
         if Pro_record <= num_records :
            print(str(Pro_record),data[i]['id'],data[i]['login'],data[i]['avatar_url'],data[i]['type'],data[i]['url'])
-           data_tuple = (Pro_record,data[i]['id'],data[i]['login'],data[i]['avatar_url'],data[i]['type'],data[i]['url'])
+           data_tuple = (str(Pro_record),str(data[i]['id']),data[i]['login'],data[i]['avatar_url'],data[i]['type'],data[i]['url'])
 
-           c.execute('''  INSERT INTO GITHUB_USERS
-                          (ID, ID_USER, USER_NAME, AVATAR, USER_TYPE,URL) 
-                          VALUES (?, ?, ?, ?, ?,?) ''',data_tuple)
+           c.execute('''  INSERT INTO public."GITHUB_USERS"
+           ( "ID", "ID_USER", "USER_NAME", "AVATAR", "USER_TYPE", "URL")
+	       VALUES (%s, %s, %s, %s, %s, %s) ''',data_tuple)
 
 
            Pro_record += 1
@@ -116,7 +115,7 @@ for loop_num in range(int(Calls_to_api)):
 
     print("Next id = ",Next_id,"Processed Records =",str(Pro_record-1))
 
-c.execute(''' SELECT count(*) FROM GITHUB_USERS ''')
+c.execute(''' SELECT count(*) FROM public."GITHUB_USERS" ''')
 for row in c : 
     print("Number of records in DataBase = ",row[0])
 #close the connection
