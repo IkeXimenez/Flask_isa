@@ -68,24 +68,24 @@ Use the        <a href="https://api.github.com/users">https://api.github.com/use
     That seeds this table in sqlLite I used an ID for processing records and
     ID_USER is the ID from the web service
 </p>
-<p>
+<div>
     CREATE TABLE GITHUB_USERS
-</p>
-<p>
+</div>
+<div>
     (ID INT PRIMARY KEY NOT NULL,
-</p>
-<p>
+</div>
+<div>
     ID_USER INT ,
-</p>
-<p>
+</div>
+<div>
     USER_NAME CHAR(50),
-</p>
-<p>
+</div>
+<div>
     AVATAR TEXT,
-</p>
-<p>
+</div>
+<div>
     USER_TYPE CHAR(50),
-</p>
-<p>
+</div>
+<div>
     URL TEXT )
-</p>
+</div>
