@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Github Users Database</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+</head>
+<body>
+<div class="container">
+ <div class="row">
+ <p><h2>GitHub Users</h2>  </p>
+ <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th><input type="checkbox" onclick="checkAll(this)"></th>
+                <th>GitHub Id</th>
+                <th>USER NAME</th>
+                <th>AVATAR</th>
+                <th>USER TYPE</th>
+                <th>URL</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+   {% for user in users.items %}
+   <tr>
+                <td><input type="checkbox" name=""></td>
+                <td>{{ user.ID_USER}}</td>
+                <td>{{ user.USER_NAME}}</td>
+                <td>
+                    <img src='{{ user.AVATAR}}' width="35" height="35" >
+                    
+                </td>
+                <td>{{ user.USER_TYPE}}</td>
+                <td>
+                    <a href="https://github.com/{{ user.USER_NAME}}">{{ user.USER_NAME}} GITHUB PAGE</a>
+                    
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>GitHub Id</th>
+                <th>USER NAME</th>
+                <th>AVATAR</th>
+                <th>USER TYPE</th>
+                <th>URL</th>
+            </tr>
+        </tfoot>
+    </table>
+ </div>
+  
+   <ul class="pagination">
+  {% if users.has_prev %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('users', page_num=users.prev_num, pagination=users.per_page) }}">Previous</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Previous</span>
+  {% endif %}
+   </li>
+    
+  {% for page in users.iter_pages(left_edge=3, right_edge=3) %}
+  {% if page %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('users', page_num=page , pagination=users.per_page )}}">{{ page }}</a></li>
+  {% else %}
+   <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link">…</a></li> 
+  {% endif %}
+  {% endfor %}
+  
+  {% if users.has_next %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('users', page_num=users.next_num, pagination=users.per_page) }}">Next</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Next</span>
+  {% endif %}
+   </ul>
+ 
+  
+</div>
+<style>
+table{
+    width:100%;
+}
+#example_filter{
+    float:right;
+}
+#example_paginate{
+    float:right;
+}
+label {
+    display: inline-flex;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    
+}
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+</style>
+<script>
+function checkAll(bx) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      cbs[i].checked = bx.checked;
+    }
+  }
+}
+</script>  
+</body>
+</html>
