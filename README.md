@@ -89,3 +89,71 @@ Use the        <a href="https://api.github.com/users">https://api.github.com/use
 <div>
     URL TEXT )
 </div>
+
+<p>
+    How to run the script seed.py :
+</p>
+<p>
+    /Flask_isa/venv/Scripts/python.exe /Flask_isa/seed/seed.py # for 150 users
+    by default
+</p>
+<p>
+    /Flask_isa/venv/Scripts/python.exe /Flask_isa/seed/seed.py -t &lt;total&gt;
+    # for n users
+</p>
+<p>
+    /Flask_isa/venv/Scripts/python.exe /Flask_isa/seed/seed.py --Total 1000 #
+    for n users
+</p>
+<div>
+    <p>
+        Evidence: Unit_test_seed_1Sep2021.txt
+    </p>
+</div>
+<p>
+    <strong>Stage 2</strong>
+</p>
+<p>
+    Create a Flask application with the following functionality:
+</p>
+<ul type="disc">
+    <li>
+        Extend the <strong><a href="http://seed.py/">seed.py</a></strong> to
+create a local SQLite database if none exists. This will create a local<strong>github_users.db</strong> file under        <strong>./app/main/database.</strong>
+    </li>
+</ul>
+<p>
+    <strong>
+        Solution= my seed.py create the database and table if none exits under
+        /database/github_users.db
+    </strong>
+</p>
+<p>
+    And to seed a PostgreSQL database if configured. The script should
+    determine the execution path depending on the existence of a config file.
+    In other words, given a config file, the script will seed the configured
+    database.
+</p>
+<p>
+    <strong>
+        Solution=Install PostgreSQL and create a database and Table
+        GITHUB_USERS like in SQLite
+    </strong>
+</p>
+<p>
+    <strong>
+        under /seed/seedpost.py special script for seed an already created db
+        in PostgreSQL
+    </strong>
+</p>
+<p>
+    <strong>using /seed/database.ini file for database parameters</strong>
+</p>
+<p>
+    <strong>
+        using /seed/config.py for reading the database parameters files
+    </strong>
+</p>
+<p>
+    <strong>Evidence= Unit_test_seed_to_PostgreSQL1Sep2021.txt</strong>
+</p>
