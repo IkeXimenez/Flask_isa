@@ -157,3 +157,239 @@ create a local SQLite database if none exists. This will create a local<strong>g
 <p>
     <strong>Evidence= Unit_test_seed_to_PostgreSQL1Sep2021.txt</strong>
 </p>
+<p>
+    <strong>,</strong>
+    <strong>seedToPostgreSQLevidence.jpg</strong>
+</p>
+<ul type="disc">
+    <li>
+        The Flask application will have a view that will show the information
+of all the users of the database as a grid or table.        <strong>Completed</strong>
+    </li>
+    <li>
+        Default pagination should be 25 but should be configurable using query
+        parameters.
+    </li>
+    <li>
+        <strong>Completed</strong>
+    </li>
+    <li>
+The View needs to be responsive even with a large amount of data.        <strong>Completed</strong>
+    </li>
+    <li>
+On clicking the profile, it should redirect to the GitHub user profile.        <strong>Completed</strong>
+    </li>
+</ul>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Example:</strong>
+</p>
+<p>
+    localhost:5000/
+</p>
+<p>
+    localhost:5000/users?pagination=&lt;limit&gt;
+</p>
+<p>
+    localhost:5000/users/&lt;int:page&gt;
+</p>
+<p>
+    localhost:5000/users/&lt;int:page&gt;?pagination=&lt;limit&gt;
+</p>
+<p>
+    Solution:
+</p>
+<p>
+    <strong>Completed I am using the following routes</strong>
+</p>
+<p>
+    <strong>@app.route("/")</strong>
+</p>
+<p>
+    <strong>@app.route("/users")</strong>
+</p>
+<p>
+    <strong>
+        @app.route("/users/&lt;int:page_num&gt;") and pagination parameter
+    </strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>localhost:5000/</strong>
+</p>
+<p>
+    <strong>localhost:5000/users?pagination=&lt;limit&gt;</strong>
+</p>
+<p>
+    <strong>localhost:5000/users/&lt;int:page&gt;</strong>
+</p>
+<p>
+    <strong>
+        localhost:5000/users/&lt;int:page&gt;?pagination=&lt;limit&gt;
+    </strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>completed</strong>
+</p>
+<p>
+    <strong>Evidence :</strong>
+    <strong> </strong>
+    <strong>
+        <a href="http://flaskisa.herokuapp.com/">
+            http://flaskisa.herokuapp.com/
+        </a>
+    </strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    The flask application should include management scripts for running,
+testing database migration, creation if necessary, using    <strong>flask-script </strong>and <strong>flask-migrate</strong> are
+    recommended, but not mandatory.
+</p>
+<p>
+    <strong>completed</strong>
+</p>
+<p>
+    <strong>Solution= I used flask-script and flask-migrate.</strong>
+</p>
+<ul>
+    <li>
+        <strong>
+            Note flask-migrate was a real pain in .. use the version I told you
+            before
+        </strong>
+    </li>
+    <li>
+        <strong>/Flask_isa/manage.py</strong>
+    </li>
+</ul>
+<p>
+    <strong>
+        /Flask_isa/venv/Scripts/python.exe /Flask_isa/manage.py runserver
+    </strong>
+</p>
+<p>
+    <strong>Evidence:</strong>
+    <strong>UnitTestformanagepyScript1Sep2021.txt</strong>
+</p>
+<p>
+    # Database management <strong>Flask_isa/dbmanage.py</strong>
+</p>
+<p>
+    <strong>
+        /Flask_isa/venv/Scripts/python.exe /Flask_isa/dbmanage.py db init
+    </strong>
+</p>
+<p>
+    <strong>Evidence: UnitTestdbmanageDB_INIT_1sep2021.txt</strong>
+</p>
+<p>
+    <strong>
+        /Flask_isa/venv/Scripts/python.exe /Flask_isa/dbmanage.py db migrate
+    </strong>
+</p>
+<p>
+    <strong>Evidence:</strong>
+    <strong>UnitTestdbmanageDB_MIGRATE1sep2021</strong>
+</p>
+<p>
+    ### Stage 3
+</p>
+<p>
+    Extend the flask application to also support a RestAPI endpoint. The
+    endpoint will return a JSON containing the information stored in the
+    database.
+</p>
+<p>
+    - The endpoint should support parameters
+</p>
+<p>
+    - To filter by username, id
+</p>
+<p>
+    - Order by id or type
+</p>
+<p>
+    - Paginate and control pagination size
+</p>
+<p>
+    **Example:**
+</p>
+<p>
+    localhost:5000/api/users/profiles # 25 pagination by default
+</p>
+<p>
+    localhost:5000/api/users/profiles?page=&lt;page&gt;
+</p>
+<p>
+    localhost:5000/api/users/profiles?pagination=&lt;pagination&gt;
+</p>
+<p>
+    localhost:5000/api/users/profiles?order_by=&lt;id|type&gt;
+</p>
+<p>
+    localhost:5000/api/users/profiles?username=&lt;term&gt;
+</p>
+<p>
+    localhost:5000/api/users/profiles?id=&lt;id&gt;
+</p>
+<p>
+    <strong>Completed</strong>
+</p>
+<p>
+    <strong>
+        Evidence=
+        <a href="http://flaskisa.herokuapp.com/">
+            http://flaskisa.herokuapp.com/
+        </a>
+    </strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Stage 4</strong>
+</p>
+<p>
+    This is optional if you are applying for an internship to S1 (jr) role This
+    is not optional for S2 - Sr. and beyond roles
+</p>
+<p>
+    Deploy the application into any cloud provided of your choice. AWS / Azure
+    / Google Cloud / Heroku. You should send the link to your application in
+    the response email.
+</p>
+<ul type="disc">
+    <li>
+The application should be deployed as a container application using        <strong>Docker</strong>
+    </li>
+</ul>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Completed</strong>
+</p>
+<p>
+    <strong>
+        Evidence=
+        <a href="http://flaskisa.herokuapp.com/">
+            http://flaskisa.herokuapp.com/
+        </a>
+    </strong>
+</p>
+<p>
+    <strong></strong>
+</p>
