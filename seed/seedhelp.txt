@@ -1,0 +1,7 @@
+seed script usage
+
+# seed.py can take --total or -t to specify the number of users to seed
+python ./seed/seed.py -t <total>
+
+# example
+python ./seed/seed.py --Total 1000
